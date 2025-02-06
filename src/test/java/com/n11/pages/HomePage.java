@@ -69,7 +69,7 @@ public class HomePage extends BasePage {
             WebElement element = waitForElementClickable(categoryLocator);
             ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element);
             try {
-                Thread.sleep(500); // Small wait for smooth scrolling
+                Thread.sleep(200); // Small wait for smooth scrolling
             } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();
             }

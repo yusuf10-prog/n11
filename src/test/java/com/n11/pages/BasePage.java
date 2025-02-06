@@ -14,9 +14,9 @@ public class BasePage {
 
     public BasePage(WebDriver driver) {
         this.driver = driver;
-        this.shortWait = new WebDriverWait(driver, Duration.ofSeconds(5));
-        this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        this.longWait = new WebDriverWait(driver, Duration.ofSeconds(20));
+        this.shortWait = new WebDriverWait(driver, Duration.ofSeconds(2));
+        this.wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        this.longWait = new WebDriverWait(driver, Duration.ofSeconds(10));
     }
 
     protected WebElement waitForElementClickable(By locator) {
