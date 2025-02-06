@@ -17,7 +17,8 @@ public class HomePage extends BasePage {
     private final By otomotivCategory = By.linkText("Otomotiv & Motosiklet");
     
     // Popup and dialog locators
-    private final By acceptCookiesButton = By.id("cookieAccept");
+    private final By cookieContainer = By.id("cookieUsagePopIn");
+    private final By acceptCookiesButton = By.cssSelector("span.cookieUsagePopIn__button");
     private final By locationPopup = By.className("locationModal");
     private final By closeLocationButton = By.className("closeBtn");
     private final By notificationDialog = By.id("notification-permission-dialog");
@@ -125,8 +126,8 @@ public class HomePage extends BasePage {
     }
 
     public void handleAllPopups() {
-        // Handle cookies
-        closePopupIfPresent(acceptCookiesButton);
+        // Handle cookies first
+        acceptCookies();
         
         // Handle location popup
         closePopupIfPresent(closeLocationButton);
@@ -136,5 +137,22 @@ public class HomePage extends BasePage {
         
         // Handle any general popup
         closePopupIfPresent(generalPopupClose);
+    }
+
+    public void acceptCookies() {
+        try {
+            // Wait for cookie container to be visible
+            if (isElementDisplayed(cookieContainer)) {
+                // Wait specifically for the accept button and click it
+                WebElement acceptButton = wait.until(ExpectedConditions.elementToBeClickable(acceptCookiesButton));
+                // Use JavaScript click for better reliability
+                ((JavascriptExecutor) driver).executeScript("arguments[0].click();", acceptButton);
+                // Wait for cookie container to disappear
+                wait.until(ExpectedConditions.invisibilityOfElementLocated(cookieContainer));
+                System.out.println("Cookies accepted successfully");
+            }
+        } catch (Exception e) {
+            System.out.println("Cookie popup was not present or already accepted: " + e.getMessage());
+        }
     }
 }
