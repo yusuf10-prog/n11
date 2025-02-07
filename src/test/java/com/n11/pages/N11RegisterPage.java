@@ -14,10 +14,10 @@ public class N11RegisterPage extends BasePage {
     @FindBy(id = "lastName")
     private WebElement lastNameField;
 
-    @FindBy(id = "registrationEmail")
+    @FindBy(id = "email")
     private WebElement emailField;
 
-    @FindBy(id = "registrationPassword")
+    @FindBy(id = "password")
     private WebElement passwordField;
 
     @FindBy(id = "passwordAgain")
