@@ -8,19 +8,19 @@ public class N11RegisterPage extends BasePage {
     @FindBy(className = "btnSignUp")
     private WebElement signUpButton;
 
-    @FindBy(xpath = "//input[@placeholder='Adınız']")
+    @FindBy(css = "input[placeholder='Ad']")
     private WebElement firstNameField;
 
-    @FindBy(xpath = "//input[@placeholder='Soyadınız']")
+    @FindBy(css = "input[placeholder='Soyad']")
     private WebElement lastNameField;
 
-    @FindBy(xpath = "//input[@placeholder='E-Posta Adresiniz']")
+    @FindBy(css = "input[placeholder='E-posta Adresiniz']")
     private WebElement emailField;
 
-    @FindBy(xpath = "//input[@placeholder='Şifreniz']")
+    @FindBy(css = "input[placeholder='Şifre']")
     private WebElement passwordField;
 
-    @FindBy(xpath = "//input[@placeholder='Şifrenizi Tekrar Girin']")
+    @FindBy(css = "input[placeholder='Şifre Tekrar']")
     private WebElement confirmPasswordField;
 
     @FindBy(id = "phoneNumber")

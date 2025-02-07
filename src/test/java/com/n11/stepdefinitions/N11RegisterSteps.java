@@ -16,6 +16,11 @@ public class N11RegisterSteps {
     @When("I click on the sign up button")
     public void iClickOnTheSignUpButton() {
         registerPage.clickSignUpButton();
+        try {
+            Thread.sleep(2000); // Wait for registration page to load
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+        }
     }
 
     @And("I enter valid registration details")
