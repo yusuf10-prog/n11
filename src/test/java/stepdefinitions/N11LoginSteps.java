@@ -8,13 +8,8 @@ import org.junit.Assert;
 import pages.N11LoginPage;
 
 public class N11LoginSteps {
-    private final N11LoginPage loginPage;
-    private final Faker faker;
-
-    public N11LoginSteps() {
-        loginPage = new N11LoginPage(N11NavigationSteps.getDriver());
-        faker = new Faker();
-    }
+    private final N11LoginPage loginPage = new N11LoginPage();
+    private final Faker faker = new Faker();
 
     @When("I click on the sign in button")
     @Step("Clicking sign in button")
