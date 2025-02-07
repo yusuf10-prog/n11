@@ -2,7 +2,7 @@ package com.n11.pages;
 
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import utilities.Driver;
+import com.n11.utilities.Driver;
 
 public class N11HomePage extends BasePage {
     @FindBy(xpath = "//span[text()='Moda']/ancestor::a")
