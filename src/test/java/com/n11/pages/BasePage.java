@@ -1,64 +1,53 @@
-package com.n11.pages;
+package pages;
 
 import org.openqa.selenium.*;
+import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import utilities.Driver;
 
 import java.time.Duration;
 
 public class BasePage {
-    protected WebDriver driver;
     protected WebDriverWait wait;
-    protected WebDriverWait shortWait;
-    protected WebDriverWait longWait;
 
-    public BasePage(WebDriver driver) {
-        this.driver = driver;
-        this.shortWait = new WebDriverWait(driver, Duration.ofSeconds(2));
-        this.wait = new WebDriverWait(driver, Duration.ofSeconds(5));
-        this.longWait = new WebDriverWait(driver, Duration.ofSeconds(10));
+    public BasePage() {
+        PageFactory.initElements(Driver.getDriver(), this);
+        wait = new WebDriverWait(Driver.getDriver(), Duration.ofSeconds(10));
     }
 
-    protected WebElement waitForElementClickable(By locator) {
-        return wait.until(ExpectedConditions.elementToBeClickable(locator));
-    }
-
-    protected WebElement waitForElementVisible(By locator) {
-        return wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
-    }
-
-    protected boolean isElementDisplayed(By locator) {
+    protected void click(By locator) {
         try {
-            return shortWait.until(ExpectedConditions.visibilityOfElementLocated(locator)).isDisplayed();
-        } catch (Exception e) {
+            wait.until(ExpectedConditions.elementToBeClickable(locator)).click();
+        } catch (ElementClickInterceptedException e) {
+            WebElement element = Driver.getDriver().findElement(locator);
+            ((JavascriptExecutor) Driver.getDriver()).executeScript("arguments[0].click();", element);
+        }
+    }
+
+    protected void sendKeys(By locator, String text) {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(locator)).sendKeys(text);
+    }
+
+    protected boolean isElementVisible(By locator) {
+        try {
+            wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+            return true;
+        } catch (TimeoutException e) {
             return false;
         }
     }
 
-    protected void waitForPageLoad() {
-        wait.until(webDriver -> ((JavascriptExecutor) webDriver)
-                .executeScript("return document.readyState").equals("complete"));
+    protected void scrollToBottom() {
+        ((JavascriptExecutor) Driver.getDriver()).executeScript("window.scrollTo(0, document.body.scrollHeight)");
+        shortWait();
     }
 
-    protected void closePopupIfPresent(By locator) {
+    protected void shortWait() {
         try {
-            WebElement popup = shortWait.until(ExpectedConditions.elementToBeClickable(locator));
-            popup.click();
-        } catch (TimeoutException | NoSuchElementException e) {
-            // Popup not present, continue
-        }
-    }
-
-    protected void handleStaleElement(By locator, Runnable action) {
-        int attempts = 0;
-        while (attempts < 3) {
-            try {
-                action.run();
-                return;
-            } catch (StaleElementReferenceException e) {
-                attempts++;
-                if (attempts == 3) throw e;
-            }
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
         }
     }
 }

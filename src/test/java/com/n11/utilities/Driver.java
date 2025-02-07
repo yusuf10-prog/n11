@@ -1,4 +1,4 @@
-package com.n11.utilities;
+package utilities;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
@@ -6,10 +6,11 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 
 public class Driver {
     private static WebDriver driver;
-
+    
     private Driver() {
+        // Singleton pattern
     }
-
+    
     public static WebDriver getDriver() {
         if (driver == null) {
             WebDriverManager.firefoxdriver().setup();
@@ -18,7 +19,7 @@ public class Driver {
         }
         return driver;
     }
-
+    
     public static void closeDriver() {
         if (driver != null) {
             driver.quit();
