@@ -1,7 +1,9 @@
 package pages;
 
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import utilities.Driver;
 
 public class N11LoginPage extends BasePage {
     @FindBy(className = "btnSignIn")
@@ -32,7 +34,13 @@ public class N11LoginPage extends BasePage {
     }
 
     public void clickLoginButton() {
-        loginButton.click();
+        try {
+            loginButton.click();
+        } catch (Exception e) {
+            // If normal click fails, try with JavaScript
+            JavascriptExecutor js = (JavascriptExecutor) Driver.getDriver();
+            js.executeScript("arguments[0].click();", loginButton);
+        }
     }
 
     public boolean isErrorMessageDisplayed() {

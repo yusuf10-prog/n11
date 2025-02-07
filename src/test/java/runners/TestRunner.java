@@ -10,10 +10,11 @@ import org.junit.runner.RunWith;
         glue = "stepdefinitions",
         plugin = {
                 "pretty",
-                "html:target/cucumber-reports/cucumber.html",
-                "json:target/cucumber-reports/cucumber.json",
+                "html:target/cucumber-reports/report.html",
+                "json:target/cucumber-reports/report.json",
                 "io.qameta.allure.cucumber7jvm.AllureCucumber7Jvm"
-        }
+        },
+        monochrome = true
 )
 public class TestRunner {
 }
