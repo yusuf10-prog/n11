@@ -1,10 +1,10 @@
-package pages;
+package com.n11.pages;
 
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import utilities.Driver;
+import com.n11.utilities.Driver;
 
 import java.time.Duration;
 

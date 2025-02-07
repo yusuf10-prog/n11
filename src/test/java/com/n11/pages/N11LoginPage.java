@@ -1,10 +1,10 @@
-package pages;
+package com.n11.pages;
 
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import utilities.Driver;
+import com.n11.utilities.Driver;
 
 public class N11LoginPage extends BasePage {
     @FindBy(className = "btnSignIn")

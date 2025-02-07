@@ -1,4 +1,4 @@
-package stepdefinitions;
+package com.n11.stepdefinitions;
 
 import io.cucumber.java.After;
 import io.cucumber.java.Scenario;
@@ -9,8 +9,8 @@ import io.qameta.allure.Attachment;
 import io.qameta.allure.Step;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
-import pages.N11HomePage;
-import utilities.Driver;
+import com.n11.pages.N11HomePage;
+import com.n11.utilities.Driver;
 
 public class N11NavigationSteps {
     private final N11HomePage n11HomePage = new N11HomePage();

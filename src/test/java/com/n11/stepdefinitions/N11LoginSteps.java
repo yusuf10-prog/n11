@@ -1,11 +1,11 @@
-package stepdefinitions;
+package com.n11.stepdefinitions;
 
 import com.github.javafaker.Faker;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import io.qameta.allure.Step;
 import org.junit.Assert;
-import pages.N11LoginPage;
+import com.n11.pages.N11LoginPage;
 
 public class N11LoginSteps {
     private final N11LoginPage loginPage = new N11LoginPage();
