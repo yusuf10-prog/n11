@@ -1,11 +1,11 @@
-package stepdefinitions;
+package com.n11.stepdefinitions;
 
 import com.github.javafaker.Faker;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
-import pages.N11RegisterPage;
+import com.n11.pages.N11RegisterPage;
 
 public class N11RegisterSteps {
     private final N11RegisterPage registerPage = new N11RegisterPage();

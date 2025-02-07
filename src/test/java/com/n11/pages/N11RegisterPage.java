@@ -1,8 +1,8 @@
-package pages;
+package com.n11.pages;
 
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import utilities.Driver;
+import com.n11.utilities.Driver;
 
 public class N11RegisterPage extends BasePage {
     @FindBy(className = "btnSignUp")
