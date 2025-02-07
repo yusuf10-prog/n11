@@ -1,98 +1,74 @@
 package pages;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import utilities.Driver;
 
 public class N11HomePage extends BasePage {
-    // Menu Locators
-    private final By modaMenuLink = By.xpath("//span[text()='Moda']/ancestor::a");
-    private final By elektronikMenuLink = By.xpath("//span[text()='Elektronik']/ancestor::a");
-    private final By evYasamMenuLink = By.xpath("//span[text()='Ev & Yaşam']/ancestor::a");
-    private final By anneBebekMenuLink = By.xpath("//span[text()='Anne & Bebek']/ancestor::a");
-    private final By kozmetikMenuLink = By.xpath("//span[text()='Kozmetik & Kişisel Bakım']/ancestor::a");
-    private final By mucevherSaatMenuLink = By.xpath("//span[text()='Mücevher & Saat']/ancestor::a");
-    private final By sporOutdoorMenuLink = By.xpath("//span[text()='Spor & Outdoor']/ancestor::a");
-    private final By kitapMuzikMenuLink = By.xpath("//span[text()='Kitap, Müzik, Film, Oyun']/ancestor::a");
-    private final By otomotivMotosikletMenuLink = By.xpath("//span[text()='Otomotiv & Motosiklet']/ancestor::a");
+    @FindBy(xpath = "//span[text()='Moda']/ancestor::a")
+    private WebElement modaMenuLink;
 
-    // Cookie consent locator
-    private final By cookieAcceptButton = By.id("onetrust-accept-btn-handler");
+    @FindBy(xpath = "//span[text()='Elektronik']/ancestor::a")
+    private WebElement elektronikMenuLink;
 
-    public N11HomePage(WebDriver driver) {
-        super(driver);
-    }
+    @FindBy(xpath = "//span[text()='Ev & Yaşam']/ancestor::a")
+    private WebElement evYasamMenuLink;
+
+    @FindBy(xpath = "//span[text()='Anne & Bebek']/ancestor::a")
+    private WebElement anneBebekMenuLink;
+
+    @FindBy(xpath = "//span[text()='Kozmetik & Kişisel Bakım']/ancestor::a")
+    private WebElement kozmetikMenuLink;
+
+    @FindBy(xpath = "//span[text()='Mücevher & Saat']/ancestor::a")
+    private WebElement mucevherSaatMenuLink;
+
+    @FindBy(xpath = "//span[text()='Spor & Outdoor']/ancestor::a")
+    private WebElement sporOutdoorMenuLink;
+
+    @FindBy(xpath = "//span[text()='Kitap, Müzik, Film, Oyun']/ancestor::a")
+    private WebElement kitapMuzikMenuLink;
+
+    @FindBy(xpath = "//span[text()='Otomotiv & Motosiklet']/ancestor::a")
+    private WebElement otomotivMotosikletMenuLink;
+
+    @FindBy(id = "onetrust-accept-btn-handler")
+    private WebElement cookieAcceptButton;
 
     public void navigateToN11() {
-        driver.get("https://www.n11.com");
+        Driver.getDriver().get("https://www.n11.com");
         handleCookieConsent();
     }
 
     public void handleCookieConsent() {
-        if (isElementVisible(cookieAcceptButton)) {
-            click(cookieAcceptButton);
+        try {
+            if (cookieAcceptButton.isDisplayed()) {
+                cookieAcceptButton.click();
+            }
+        } catch (Exception ignored) {
+            // Cookie banner might not appear
         }
     }
 
     public void clickAllMenuItems() {
-        // Wait for the page to load completely
-        try {
-            Thread.sleep(2000); // Wait for page load
-        } catch (InterruptedException e) {
-            Thread.currentThread().interrupt();
-        }
+        shortWait(); // Initial wait for page load
 
-        click(modaMenuLink);
-        shortWait();
-        driver.navigate().back();
-        shortWait();
-        
-        click(elektronikMenuLink);
-        shortWait();
-        driver.navigate().back();
-        shortWait();
-        
-        click(evYasamMenuLink);
-        shortWait();
-        driver.navigate().back();
-        shortWait();
-        
-        click(anneBebekMenuLink);
-        shortWait();
-        driver.navigate().back();
-        shortWait();
-        
-        click(kozmetikMenuLink);
-        shortWait();
-        driver.navigate().back();
-        shortWait();
-        
-        click(mucevherSaatMenuLink);
-        shortWait();
-        driver.navigate().back();
-        shortWait();
-        
-        click(sporOutdoorMenuLink);
-        shortWait();
-        driver.navigate().back();
-        shortWait();
-        
-        click(kitapMuzikMenuLink);
-        shortWait();
-        driver.navigate().back();
-        shortWait();
-        
-        click(otomotivMotosikletMenuLink);
-        shortWait();
-        driver.navigate().back();
-        shortWait();
+        clickAndGoBack(modaMenuLink);
+        clickAndGoBack(elektronikMenuLink);
+        clickAndGoBack(evYasamMenuLink);
+        clickAndGoBack(anneBebekMenuLink);
+        clickAndGoBack(kozmetikMenuLink);
+        clickAndGoBack(mucevherSaatMenuLink);
+        clickAndGoBack(sporOutdoorMenuLink);
+        clickAndGoBack(kitapMuzikMenuLink);
+        clickAndGoBack(otomotivMotosikletMenuLink);
     }
 
-    private void shortWait() {
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            Thread.currentThread().interrupt();
-        }
+    private void clickAndGoBack(WebElement element) {
+        element.click();
+        shortWait();
+        Driver.getDriver().navigate().back();
+        shortWait();
     }
 
     public void scrollToBottomOfPage() {

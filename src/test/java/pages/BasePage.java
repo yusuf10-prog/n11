@@ -1,27 +1,27 @@
 package pages;
 
 import org.openqa.selenium.*;
+import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import utilities.Driver;
 
 import java.time.Duration;
 
 public class BasePage {
-    protected WebDriver driver;
     protected WebDriverWait wait;
 
-    public BasePage(WebDriver driver) {
-        this.driver = driver;
-        this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+    public BasePage() {
+        PageFactory.initElements(Driver.getDriver(), this);
+        wait = new WebDriverWait(Driver.getDriver(), Duration.ofSeconds(10));
     }
 
     protected void click(By locator) {
         try {
             wait.until(ExpectedConditions.elementToBeClickable(locator)).click();
         } catch (ElementClickInterceptedException e) {
-            // If element is not clickable, try with JavaScript
-            WebElement element = driver.findElement(locator);
-            ((JavascriptExecutor) driver).executeScript("arguments[0].click();", element);
+            WebElement element = Driver.getDriver().findElement(locator);
+            ((JavascriptExecutor) Driver.getDriver()).executeScript("arguments[0].click();", element);
         }
     }
 
@@ -38,17 +38,14 @@ public class BasePage {
         }
     }
 
-    protected void acceptCookies() {
-        By cookiesAcceptButton = By.id("cookiesAcceptButton"); // Update this locator based on actual website
-        if (isElementVisible(cookiesAcceptButton)) {
-            click(cookiesAcceptButton);
-        }
+    protected void scrollToBottom() {
+        ((JavascriptExecutor) Driver.getDriver()).executeScript("window.scrollTo(0, document.body.scrollHeight)");
+        shortWait();
     }
 
-    protected void scrollToBottom() {
-        ((JavascriptExecutor) driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
+    protected void shortWait() {
         try {
-            Thread.sleep(500); // Short wait after scroll
+            Thread.sleep(1000);
         } catch (InterruptedException e) {
             Thread.currentThread().interrupt();
         }

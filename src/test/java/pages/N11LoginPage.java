@@ -1,36 +1,45 @@
 package pages;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 
 public class N11LoginPage extends BasePage {
-    private final By signInButton = By.className("btnSignIn");
-    private final By emailField = By.id("email");
-    private final By passwordField = By.id("password");
-    private final By loginButton = By.id("loginButton");
-    private final By errorMessage = By.className("errorMessage");
+    @FindBy(className = "btnSignIn")
+    private WebElement signInButton;
 
-    public N11LoginPage(WebDriver driver) {
-        super(driver);
-    }
+    @FindBy(id = "email")
+    private WebElement emailField;
+
+    @FindBy(id = "password")
+    private WebElement passwordField;
+
+    @FindBy(id = "loginButton")
+    private WebElement loginButton;
+
+    @FindBy(className = "errorMessage")
+    private WebElement errorMessage;
 
     public void clickSignInButton() {
-        click(signInButton);
+        signInButton.click();
     }
 
     public void enterEmail(String email) {
-        sendKeys(emailField, email);
+        emailField.sendKeys(email);
     }
 
     public void enterPassword(String password) {
-        sendKeys(passwordField, password);
+        passwordField.sendKeys(password);
     }
 
     public void clickLoginButton() {
-        click(loginButton);
+        loginButton.click();
     }
 
     public boolean isErrorMessageDisplayed() {
-        return isElementVisible(errorMessage);
+        try {
+            return errorMessage.isDisplayed();
+        } catch (Exception e) {
+            return false;
+        }
     }
 }
