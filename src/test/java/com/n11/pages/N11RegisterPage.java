@@ -5,22 +5,22 @@ import org.openqa.selenium.support.FindBy;
 import com.n11.utilities.Driver;
 
 public class N11RegisterPage extends BasePage {
-    @FindBy(className = "btnSignUp")
+    @FindBy(css = ".btnSignUp")
     private WebElement signUpButton;
 
-    @FindBy(css = "input[placeholder='Ad']")
+    @FindBy(css = "[name='firstName']")
     private WebElement firstNameField;
 
-    @FindBy(css = "input[placeholder='Soyad']")
+    @FindBy(css = "[name='lastName']")
     private WebElement lastNameField;
 
-    @FindBy(css = "input[placeholder='E-posta Adresiniz']")
+    @FindBy(css = "[name='email']")
     private WebElement emailField;
 
-    @FindBy(css = "input[placeholder='Şifre']")
+    @FindBy(css = "[name='password']")
     private WebElement passwordField;
 
-    @FindBy(css = "input[placeholder='Şifre Tekrar']")
+    @FindBy(css = "[name='passwordAgain']")
     private WebElement confirmPasswordField;
 
     @FindBy(id = "phoneNumber")
