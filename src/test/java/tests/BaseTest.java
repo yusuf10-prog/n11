@@ -1,8 +1,8 @@
 package tests;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
-import org.junit.After;
-import org.junit.Before;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -10,7 +10,7 @@ import org.openqa.selenium.chrome.ChromeOptions;
 public class BaseTest {
     protected WebDriver driver;
 
-    @Before
+    @BeforeMethod
     public void setUp() {
         WebDriverManager.chromedriver().setup();
         ChromeOptions options = new ChromeOptions();
@@ -20,7 +20,7 @@ public class BaseTest {
         driver.get("https://www.n11.com");
     }
 
-    @After
+    @AfterMethod
     public void tearDown() {
         if (driver != null) {
             driver.quit();
