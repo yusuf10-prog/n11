@@ -1,11 +1,17 @@
 package tests;
 
+import io.qameta.allure.*;
 import org.testng.annotations.Test;
 import pages.HomePage;
 
 public class MenuTest extends BaseTest {
 
+    @Epic("Menu Navigation Tests")
+    @Feature("Müşteriler Menu")
+    @Story("Click all items in Müşteriler menu")
+    @Description("Test clicks on all available items in the Müşteriler menu and verifies navigation")
     @Test(description = "Test clicking on all Müşteriler menu items")
+    @Severity(SeverityLevel.CRITICAL)
     public void testMusterilerMenu() {
         HomePage homePage = new HomePage(driver);
         
@@ -49,7 +55,12 @@ public class MenuTest extends BaseTest {
         driver.navigate().back();
     }
 
+    @Epic("Menu Navigation Tests")
+    @Feature("Popüler Sayfalar")
+    @Story("Click all items in Popüler Sayfalar section")
+    @Description("Test clicks on all available items in the Popüler Sayfalar section and verifies navigation")
     @Test(description = "Test clicking on all Popüler Sayfalar items")
+    @Severity(SeverityLevel.CRITICAL)
     public void testPopulerSayfalar() {
         HomePage homePage = new HomePage(driver);
         
@@ -87,7 +98,12 @@ public class MenuTest extends BaseTest {
         driver.navigate().back();
     }
 
+    @Epic("Menu Navigation Tests")
+    @Feature("Öne Çıkan Sayfalar")
+    @Story("Click all items in Öne Çıkan Sayfalar section")
+    @Description("Test clicks on all available items in the Öne Çıkan Sayfalar section and verifies navigation")
     @Test(description = "Test clicking on all Öne Çıkan Sayfalar items")
+    @Severity(SeverityLevel.CRITICAL)
     public void testOneCikanSayfalar() {
         HomePage homePage = new HomePage(driver);
         
@@ -125,7 +141,12 @@ public class MenuTest extends BaseTest {
         driver.navigate().back();
     }
 
+    @Epic("Menu Navigation Tests")
+    @Feature("Mağazalar Section")
+    @Story("Click all items in Mağazalar section")
+    @Description("Test clicks on all available items in the Mağazalar section and verifies navigation")
     @Test(description = "Test clicking on all Mağazalar section items")
+    @Severity(SeverityLevel.CRITICAL)
     public void testMagazalarSection() {
         HomePage homePage = new HomePage(driver);
         

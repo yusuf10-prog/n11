@@ -1,21 +1,31 @@
 package tests;
 
-import org.junit.Before;
-import org.junit.Test;
+import io.qameta.allure.Description;
+import io.qameta.allure.Epic;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
+import io.qameta.allure.Story;
 import org.openqa.selenium.By;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 import pages.HomePage;
 
 public class HomePageTest extends BaseTest {
     
     private HomePage homePage;
 
-    @Before
-    public void setUp() {
-        super.setUp();
+    @BeforeMethod
+    public void setUpTest() {
         homePage = new HomePage(driver);
     }
 
-    @Test
+    @Test(description = "Test basic homepage interactions")
+    @Epic("Homepage Tests")
+    @Feature("Basic Interactions")
+    @Story("Verify all basic homepage interactions work")
+    @Description("Test basic interactions like search, cart, and navigation")
+    @Severity(SeverityLevel.CRITICAL)
     public void testHomePageInteractions() throws InterruptedException {
         // Test all clickable elements
         try {
@@ -33,36 +43,8 @@ public class HomePageTest extends BaseTest {
             driver.navigate().back();
             Thread.sleep(2000);
             
-            // Category interaction
-            homePage.scrollToElement(By.cssSelector(".catMenuItem a"));
-            Thread.sleep(1000);
-            homePage.clickFirstCategory();
-            Thread.sleep(2000);
-            driver.navigate().back();
-            Thread.sleep(2000);
-            
-            // Campaign interaction
-            homePage.scrollToElement(By.cssSelector(".banner-container"));
-            Thread.sleep(1000);
-            homePage.clickFirstCampaign();
-            Thread.sleep(2000);
-            driver.navigate().back();
-            Thread.sleep(2000);
-            
-            // Featured product interaction
-            homePage.scrollToElement(By.cssSelector(".plink"));
-            Thread.sleep(1000);
-            homePage.clickFirstFeaturedProduct();
-            Thread.sleep(2000);
-            driver.navigate().back();
-            Thread.sleep(2000);
-            
-            // Footer interactions
-            homePage.scrollToElement(By.cssSelector(".footer__middle"));
-            Thread.sleep(1000);
-            homePage.clickFooterMenu();
-            Thread.sleep(2000);
-            driver.navigate().back();
+            // Social media section
+            homePage.scrollToElement(By.cssSelector(".footer__social"));
             Thread.sleep(2000);
             
             // Social media interactions

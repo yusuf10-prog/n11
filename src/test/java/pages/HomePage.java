@@ -119,10 +119,6 @@ public class HomePage extends BasePage {
     public void clickKargoRehberi() { click(kargoRehberiBy); }
     private final By socialMediaLinksBy = By.cssSelector(".footer__social a");
 
-    public HomePage(WebDriver driver) {
-        super(driver);
-    }
-
     public void searchProduct(String keyword) {
         WebElement searchBox = wait.until(ExpectedConditions.presenceOfElementLocated(searchBoxBy));
         searchBox.clear();
