@@ -45,6 +45,14 @@ public class HomePage extends BasePage {
     private final By sacDuzlestiriciBy = By.linkText("Saç Düzleştirici");
     private final By avizeBy = By.linkText("Avize");
     private final By suAritmaCihaziBy = By.linkText("Su Arıtma Cihazı");
+    
+    // Sosyal Medya İkonları locators
+    private final By facebookIconBy = By.cssSelector("a[href*='facebook.com']");
+    private final By twitterIconBy = By.cssSelector("a[href*='twitter.com']");
+    private final By instagramIconBy = By.cssSelector("a[href*='instagram.com']");
+    private final By youtubeIconBy = By.cssSelector("a[href*='youtube.com']");
+    private final By pinterestIconBy = By.cssSelector("a[href*='pinterest.com']");
+    
     private final By sevgililerGunuBy = By.linkText("Sevgililer Günü");
     private final By laptopBy = By.linkText("Laptop");
     private final By iphone15By = By.linkText("iPhone 15");
@@ -67,6 +75,31 @@ public class HomePage extends BasePage {
 
     public HomePage(WebDriver driver) {
         super(driver);
+    }
+    
+    public void clickFacebookIcon() {
+        WebElement element = wait.until(ExpectedConditions.presenceOfElementLocated(facebookIconBy));
+        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", element);
+    }
+    
+    public void clickTwitterIcon() {
+        WebElement element = wait.until(ExpectedConditions.presenceOfElementLocated(twitterIconBy));
+        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", element);
+    }
+    
+    public void clickInstagramIcon() {
+        WebElement element = wait.until(ExpectedConditions.presenceOfElementLocated(instagramIconBy));
+        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", element);
+    }
+    
+    public void clickYoutubeIcon() {
+        WebElement element = wait.until(ExpectedConditions.presenceOfElementLocated(youtubeIconBy));
+        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", element);
+    }
+    
+    public void clickPinterestIcon() {
+        WebElement element = wait.until(ExpectedConditions.presenceOfElementLocated(pinterestIconBy));
+        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", element);
     }
 
     // Müşteriler menu methods
