@@ -7,6 +7,7 @@
             <class name="tests.MenuTest"/>
             <class name="tests.RegisterTest"/>
             <class name="tests.SocialMediaTest"/>
+            <class name="tests.FooterLinksTest"/>
         </classes>
     </test>
 </suite>
