@@ -6,6 +6,8 @@ import io.qameta.allure.Step;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.testng.ITestResult;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.openqa.selenium.WebDriver;
@@ -17,7 +19,7 @@ import java.io.ByteArrayInputStream;
 public class BaseTest {
     protected WebDriver driver;
 
-    @BeforeMethod
+    @BeforeClass
     @Step("Setting up the test environment")
     public void setUp() {
         WebDriverManager.chromedriver().setup();
@@ -25,15 +27,25 @@ public class BaseTest {
         options.addArguments("--start-maximized");
         options.addArguments("--disable-notifications");
         driver = new ChromeDriver(options);
+    }
+
+    @BeforeMethod
+    @Step("Navigating to N11 homepage")
+    public void navigateToHomePage() {
         driver.get("https://www.n11.com");
     }
 
     @AfterMethod
-    @Step("Tearing down the test environment")
-    public void tearDown(ITestResult result) {
+    @Step("Taking screenshot if test fails")
+    public void afterMethod(ITestResult result) {
         if (result.getStatus() == ITestResult.FAILURE) {
             Allure.addAttachment("Screenshot", new ByteArrayInputStream(((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES)));
         }
+    }
+
+    @AfterClass
+    @Step("Tearing down the test environment")
+    public void tearDown() {
         if (driver != null) {
             driver.quit();
         }
