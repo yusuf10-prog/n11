@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="N11 Test Suite">
-    <test name="N11 Tests">
+<suite name="N11 Test Suite" preserve-order="true">
+    <test name="N11 Tests" preserve-order="true">
+        <parameter name="browser" value="chrome"/>
         <classes>
             <class name="tests.HomePageTest"/>
             <class name="tests.MenuTest"/>

@@ -52,7 +52,34 @@ public class BasePage {
         wait.until(ExpectedConditions.visibilityOf(element));
     }
 
-    protected void scrollToElement(By by) {
+    public void acceptCookies() {
+        try {
+            // Try multiple possible cookie accept button selectors
+            By[] cookieSelectors = {
+                By.id("cookieAcceptButton"),
+                By.cssSelector(".cookie-policy-accept-button"),
+                By.cssSelector(".cookie-accept-button"),
+                By.cssSelector("#cookieUsagePopIn .closeBtn"),
+                By.cssSelector(".cookie-policy-popup .accept-button")
+            };
+
+            for (By selector : cookieSelectors) {
+                try {
+                    WebElement acceptButton = wait.until(ExpectedConditions.elementToBeClickable(selector));
+                    click(acceptButton);
+                    System.out.println("Successfully clicked cookie accept button with selector: " + selector);
+                    return;
+                } catch (Exception ignored) {
+                    // Try next selector
+                }
+            }
+            System.out.println("Could not find any cookie accept button");
+        } catch (Exception e) {
+            System.out.println("Error handling cookie consent: " + e.getMessage());
+        }
+    }
+
+    public void scrollToElement(By by) {
         WebElement element = driver.findElement(by);
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element);
         // Add a small wait after scrolling
@@ -63,7 +90,7 @@ public class BasePage {
         }
     }
 
-    protected void scrollToElement(WebElement element) {
+    public void scrollToElement(WebElement element) {
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element);
         // Add a small wait after scrolling
         try {
